@@ -1,0 +1,153 @@
+extends layout
+block content
+	- var iconWidth = 64;
+	style.
+		.ras-block{
+			background-color: rgba(200,200,200,0.1);
+		}
+		.server-icon{
+			width: #{iconWidth}px;
+			height: #{iconWidth}px;
+			margin-top: -#{iconWidth / 8}px;
+			background-color: #ddd;
+			border-radius: 50%;
+		}
+		.server-icon img{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+		.discord{
+			position: relative;
+			top: -#{iconWidth}px;
+			z-index: 2;
+			cursor: pointer;
+			width: #{iconWidth}px;
+			height: #{iconWidth}px;
+			border-radius: 50%;
+		}
+		.discord img{
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.discord a{
+			position: relative;
+			top: -#{iconWidth}px;
+		}
+		.discord a div{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+		.discord:hover{
+			background-color: rgba(0,0,0,0.4);
+		}
+		.discord:hover img{
+			opacity: 1;
+		}
+	h2(class="Milford allcaps") LOCKEDCRAFT: RELATED ALTERNATIVE SERVERS
+	each category in listingsByCategory
+		div(id=`ListingCategory_${category.categoryNum}`)
+			hr(class="w3-col")
+			h3(class="Milford allcaps") Category #{category.category}: #{category.title}
+			h4=category.description
+			//-If there are no servers for the category, display grass block and "There are no servers listed for this category"
+			- if( !category.listings || !category.listings[0] )
+				div(class="w3-col")
+					br
+				div(class="w3-container w3-padding w3-col")
+					div(class="w3-col m1")
+						div(class="server-icon")
+							img(src="/images/no-icon.png")
+					div(class="w3-col m11 w3-margin-top")
+						span(class="w3-left") There are no servers listed for this category.
+			//-Loop through each listing
+			each listing in category.listings
+				//-Padded container for each listing
+				div(class="w3-container w3-padding-24 w3-col")
+					//-Block with background
+					div(class="w3-col ras-block")
+						//-Spacer
+						p(class="w3-col")
+						//-This entire div is for the icon
+						div(class="w3-col m2")
+							//-spacer
+							div(class="w3-col m4") &nbsp;
+							//-remainder after spacer
+							div(class="w3-col m8")
+								if listing.data.icon
+									div(class="server-icon")
+										img(src=listing.data.icon)
+										div(class="discord w3-tooltip")
+											if listing.data.discord
+												img(src="/images/discord.png")
+												- var txtSize = 12;
+												- var tooltipLength = listing.data.discord.length * txtSize * 0.7;
+												- var tooltipMargin = tooltipLength / 2;
+												span(class="w3-tooltiptext Consolas" id=`tooltiptext_${listing._id}`  style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`)=listing.data.discord
+												script.
+													var id = "#tooltiptext_#{listing._id}";
+													//Replace contents of tooltiptext with another child span
+													$(id).html((i, html) => `<span>${html}</span>`);
+													//Replace width and margin with accurate width of text
+													$(id).css("width", $(id).children().width() + 12);
+													$(id).css("margin-left", $(id).children().width() / -2 - 6);
+												- if( !listing.data.discord.includes("http") )
+													- listing.data.discord = "http://" + listing.data.discord;
+												a(href=listing.data.discord target="_blank")
+													div
+											else
+												- var txtSize = 12;
+												- var tooltipLength = 128;
+												- var tooltipMargin = tooltipLength / 2;
+												span(class="w3-tooltiptext Consolas" style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`) There is no Discord server for this Minecraft server.
+								else
+									div(class="server-icon")
+										img(src="/images/no-icon.png")
+						//-Container for rest of server information except for description
+						div(class="w3-col m10")
+							//-Container for DATA of server info
+							div(class="w3-col")
+								//-Server name
+								div(class="w3-col m3")
+									span
+										strong=listing.data.servername
+								//-Owner/creator
+								div(class="w3-col m3")
+									//-Add http if necessary
+									if listing.data.creatorlink
+										- if( !listing.data.creatorlink.includes("http") )
+											- listing.data.creatorlink = "http://" + listing.data.creatorlink;
+										a(href=listing.data.creatorlink class="link")=listing.data.creator
+									else
+										span=listing.data.creator
+								//-Website
+								div(class="w3-col m3")
+									if listing.data.weblink
+										- if( !listing.data.weblink.includes("http") )
+											- listing.data.weblink = "http://" + listing.data.weblink;
+										//-text is only what's after http://
+										a(href=listing.data.weblink class="link")=listing.data.weblink.split("://")[1]
+								//-MC server address
+								div(class="w3-col m3")
+									span(class="Consolas")=listing.data.address
+							//-Container for LABELS
+							div(class="w3-col Milford allcaps")
+								div(class="w3-col m3")
+									span Server name
+								div(class="w3-col m3")
+									span Owner
+								div(class="w3-col m3")
+									span Website
+								div(class="w3-col m3")
+									span IP Address
+						//-Full-width container for description
+						div(class="w3-col")
+							//-Spacer
+							div(class="w3-col m1") &nbsp;
+							//-Description
+							div(class="w3-col m11")
+								p(class="w3-left w3-left-align w3-margin-right")=listing.data.desc
+	//-Spacer at the end of the page
+	p(class="w3-col")

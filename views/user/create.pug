@@ -1,0 +1,25 @@
+extends ../layout
+block content
+	h2(class="Milford") CREATE A USER
+	p
+	div(class="w3-content Milford")
+		form(method="post" action="/user/create")
+			div(class="w3-container w3-padding")
+				div(class="w3-quarter w3-label theme-inline-padding")
+					label ROLE 
+				div(class="w3-half")
+					select(name="role" class="w3-select theme-inline-padding w3-input w3-no-border")
+						each role in roles
+							option(class="w3-bar-item w3-padding" value=role.role)=role.label
+			div(class="w3-container w3-padding")
+				div(class="w3-quarter w3-label theme-inline-padding")
+					label USERNAME 
+				div(class="w3-half")
+					input(type="text" name="username" class="w3-input theme-inline-padding w3-no-border")
+			div(class="w3-container w3-padding")
+				div(class="w3-quarter w3-label theme-inline-padding")
+					label PASSWORD 
+				div(class="w3-half")
+					input(type="text" name="password" class="w3-input theme-inline-padding w3-no-border")
+			div(class="w3-container w3-padding")
+				input(class="w3-btn theme-submit" type="submit" value="SUBMIT")

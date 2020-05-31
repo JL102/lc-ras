@@ -1,0 +1,28 @@
+.Milford{
+	font-family: "MilfordCondensedBold";
+}
+
+.allcaps{
+	text-transform: uppercase;
+}
+
+.Consolas{
+	font-family: Consolas;
+}
+
+.link{
+	text-decoration: none;
+    color: #9eeaff;
+}
+.link:hover{
+	text-decoration: underline;
+}
+
+@font-face{
+	font-family: "MilfordCondensedBold";
+	src: url('/fonts/MILFCD_B.otf') format("opentype"),
+		url('/fonts/MILFCD_B.eot'),
+		url('/fonts/MILFCD_B.ttf') format("truetype");
+} 
+
+h1,h2,h3,h4,h5,h6{font-family: "MilfordCondensedBold";}

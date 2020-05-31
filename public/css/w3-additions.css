@@ -1,0 +1,133 @@
+.w3-btn{box-shadow: none!important;}
+
+.w3-no-border{border:none!important}
+.w3-no-focus,.w3-no-outline:focus {outline:0;}
+
+.w3-bar .w3-bar-item{
+	padding: 12px 24px;
+}
+
+.w3-input{
+	background-color: rgb(218, 218, 218);
+	color: #000;
+	border-radius: 8px;
+}
+.w3-select{
+	padding-top: 11px;
+	padding-bottom: 11px;
+}
+
+.w3-btn{
+	border-radius: 4px;
+}
+
+.theme-header{
+	margin: 0px;
+}
+
+.theme-subheader{
+	margin: 0px;
+}
+
+/* Tooltip container */
+.w3-tooltip {
+	/*display: inline-block;*/
+	
+	/* Disable link highlighting */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* Tooltip text */
+.w3-tooltip .w3-tooltiptext {
+	visibility: hidden;
+	width: 360px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	padding: 5px 3px;
+	border-radius: 6px;
+
+	/* Position the tooltip text */
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -180px;
+	margin-top: -12px;
+
+	/* Fade in tooltip */
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.w3-tooltip .w3-tooltiptext:hover {
+	outline:none;
+	text-decoration:none;
+}
+
+/* Tooltip arrow */
+.w3-tooltip .w3-tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+.w3-tooltiptext.tooltip-white{
+	background-color: #f2f2f8;
+	color: #000!important;
+}
+.w3-tooltip .w3-tooltiptext.tooltip-white::after{
+	border-color: #f2f2f8 transparent transparent transparent;
+}
+.w3-tooltiptext.tooltip-gray{
+	background-color: #8a8a9b;
+	color: #fff!important;
+}
+.w3-tooltip .w3-tooltiptext.tooltip-gray::after{
+	border-color: #8a8a9b transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.w3-tooltip:hover .w3-tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
+
+
+@media (min-width:993px){
+	.w3-col.l0{display:none;}
+	.w3-col.l-half{width:4.166%;}
+}
+
+@media (min-width: 601px){
+	.w3-col.m0{display:none;}
+	.w3-col.m-half{width:4.166%;}
+	.gear-label,.w3-label{
+		text-align: right;
+		padding-right: 8px;
+	}
+	#navBar{ display: inline!important; }
+	.w3-label{text-align: right; padding-right: 8px;}
+}
+
+@media (max-width: 600px){
+	.w3-col.s0{display:none;}
+	.w3-col.s-half{width:4.166%;}
+	.gear-resp90,.w3-resp90{
+		width: 90%!important;
+	}
+	.gear-resp50,.w3-resp90{
+		width: 50%!important;
+	}
+	/* Tooltip */
+	.w3-tooltip .w3-tooltiptext{
+		width: 100%;
+		margin-left: 0px;
+		/*left: 0px; */
+	}
+}

@@ -1,0 +1,68 @@
+extends ./layout 
+block content
+	//-Unique identifier for each listing
+	- var identifier = 0;
+	div(class="w3-content Milford")
+		form(method="post" action="/editor/ras")
+			each category in listingsByCategory
+				div(id=`ListingCategory_${category.categoryNum}`)
+					hr
+					h3(class="Milford allcaps") Category #{category.category}: #{category.title}
+					h4=category.description
+					each listing in category.listings
+						div(class="w3-container w3-padding")
+							include templates/editrastemplate
+						//-iterate identifier by 1
+						- identifier++;
+					div(class="w3-container w3-padding" id=`AddOneParent_${category.categoryNum}`)
+						div(class="w3-circle w3-button w3-gray AddOneBtn" style="float:right; margin-right: 24px; width:48px;height:48px;" id=`AddOne_${category.categoryNum}`)
+							span(class="w3-xlarge w3-text-dark-gray" style="position: relative; top: -3px; left: -1px;") +
+					//-Model for each category listing
+					div(class="w3-hide")
+						- if(true) //-Puts identifier into new scope so i can use let
+							- let identifier = "Model";
+							- let listing = {data: {}};
+							div(class="w3-container w3-padding" id=`ListingModel_${category.categoryNum}`)
+								include templates/editrastemplate
+			hr
+			div(class="w3-container w3-padding")
+				input(class="w3-btn theme-submit" type="submit" value="SUBMIT")
+			br 
+	- var lastListingIdentifier = identifier;
+	script var identifier = #{lastListingIdentifier};
+	script.
+		$(function(){
+			
+			$(".AddOneBtn").click(handleAddOneOnclick);
+			
+			function handleAddOneOnclick(e){
+				
+				//Iterate identifier (global ID of listing) by one.
+				identifier++;
+				
+				//Get info of the button that is clicked.
+				var thisBtn = $(this);
+				var categoryNum = thisBtn.attr("id").split("_")[1];
+				
+				//Clone model listing for new element
+				var listing = $(`#ListingModel_${categoryNum}`).clone();
+				
+				//Find and replace "Model" with current server listing for all IDs and values.
+				listing.html(function(index, html){
+					return html.replace(/Model/g, identifier);
+				});
+				//remove id
+				listing.attr("id", "");
+				
+				//Add new listing to category
+				$(`#ListingCategory_${categoryNum}`).append(listing);
+				
+				//Remove and re-add button's parent to category (to position at end)
+				var thisBtnParent = $(`#AddOneParent_${categoryNum}`);
+				thisBtnParent.remove();
+				$(`#ListingCategory_${categoryNum}`).append(thisBtnParent);
+				
+				//Refresh handler (when deleted from DOM, handlers have to be reset apparently)
+				thisBtn.click(handleAddOneOnclick);
+			}
+		});

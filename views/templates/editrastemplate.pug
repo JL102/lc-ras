@@ -1,0 +1,67 @@
+block content
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label CREATOR 
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_creator` value=listing.data.creator class="w3-input w3-no-border Consolas")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label CREATOR LINK
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_creatorlink` value=listing.data.creatorlink class="w3-input w3-no-border Consolas")
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label DISCORD LINK 
+			//input(type="checkbox" name=`${category.categoryNum}_${identifier}_chkdiscord` class="w3-check" style="width:21px;height:21px;top:4px;")
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_discord` value=listing.data.discord class="w3-input w3-no-border Consolas")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label ICON LINK (IMGUR)
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_icon` value=listing.data.icon class="w3-input w3-no-border Consolas")
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label WEBSITE 
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_weblink` value=listing.data.weblink class="w3-input w3-no-border Consolas")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label SERVER NAME 
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_servername` value=listing.data.servername class="w3-input w3-no-border Consolas")
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label ADDRESS 
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_address` value=listing.data.address class="w3-input w3-no-border Consolas")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label STATUS
+		div(class="w3-quarter")
+			select(name=`${category.categoryNum}_${identifier}_status` class="w3-input w3-no-border Consolas")
+				if listing.data.status == "release"
+					option(value="release" selected) RELEASE
+				else
+					option(value="release") RELEASE
+				if listing.data.status == "shutdown"
+					option(value="shutdown" selected) SHUT DOWN
+				else
+					option(value="shutdown") SHUT DOWN
+				if listing.data.status == "cancelled"
+					option(value="cancelled" selectedf) CANCELLED
+				else
+					option(value="cancelled") CANCELLED
+				if listing.data.status == "alpha"
+					option(value="alpha" selected) ALPHA
+				else
+					option(value="alpha") ALPHA
+				if listing.data.status == "beta"
+					option(value="beta" selected) BETA
+				else
+					option(value="beta") BETA
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label DESCRIPTION
+		div(class="w3-threequarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_desc` value=listing.data.desc class="w3-input w3-no-border Consolas" style="resize:both;")
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			input(type="checkbox" name=`${category.categoryNum}_${identifier}_delete` id=`${category.categoryNum}_${identifier}_delete`)
+			label(for=`${category.categoryNum}_${identifier}_delete`) DELETE?

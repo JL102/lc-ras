@@ -1,0 +1,72 @@
+.theme-text{color:#eee}
+
+.theme-link{background-color: rgb(80,80,80)!important;}
+.theme-link:hover{background-color: rgb(120,120,120)!important}
+.theme-submit{background-color: rgb(63, 63, 63)!important;}
+.theme-submit:hover{background-color: rgb(102, 102, 102)!important;}
+.theme-clear,.theme-clear-hover:hover{background-color:rgba(0,0,0,0)!important}
+
+.theme-inline-padding{    
+    min-height: 18px;
+    padding: 9px;
+}
+
+nav{background-color: rgba(255,255,255,0.2)!important;}
+
+.theme-bg{
+    background: linear-gradient(205deg,rgba(0,0,0,0.4) 50%,rgba(90, 90, 90, 0.4) 100%),
+        linear-gradient(160deg,rgb(66, 66, 66) 30%,rgb(0, 0, 0) 90%)
+}
+
+canvas, .canvas{
+    z-index: -1;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+/* For notification cards */
+.notification-card-container{
+	position: fixed;
+	z-index: 2;
+	width: 100%;
+	top: 45px;
+	left: 0px;
+}
+
+.notification-card{
+	z-index: 3;
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: rgb(255, 179, 179);
+	margin: 16px 0px;
+	transition: opacity 2s;
+	transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	
+	border-bottom-style: solid;
+	border-bottom-width: 4px;
+}
+
+.notification-card .notification-card-content{
+	font-size: 1.1em;
+	text-align: center;
+	word-wrap: break-word;
+	font-family: Verdana, Geneva, sans-serif;
+	
+	padding: 12px 32px;
+}
+
+.notification-card .notification-card-exit{
+	font-size: 1.2em;
+	text-align: center;
+	font-family: monospace;
+	transform: scaleX(1.3);
+	
+	float: right;
+	padding: 12px 24px;
+}
+
+.notification-card .notification-card-exit:hover{
+	cursor: pointer;
+}

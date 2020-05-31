@@ -1,0 +1,6 @@
+extends ../layout
+block content
+	h3(class="Milford allcaps") Manage Users
+	each user in users
+		p=JSON.stringify(user)
+	
