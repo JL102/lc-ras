@@ -63,6 +63,9 @@ router.post('/ras', async function(req, res){
 		switch(thisElementType){
 			case "creator":
 			case "creatorlink":
+			case 'suggestor':
+			case 'suggestorlink':
+			case 'suggestorrelationship':
 			case "discord":
 			case "icon":
 			case "weblink":

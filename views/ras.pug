@@ -48,6 +48,7 @@ block content
 		}
 	h2(class="Milford allcaps") LOCKEDCRAFT: RELATED ALTERNATIVE SERVERS
 	each category in listingsByCategory
+		- console.log(category.categoryNum)
 		div(id=`ListingCategory_${category.categoryNum}`)
 			hr(class="w3-col")
 			h3(class="Milford allcaps") Category #{category.category}: #{category.title}
@@ -113,15 +114,29 @@ block content
 								div(class="w3-col m3")
 									span
 										strong=listing.data.servername
+								//-Suggestor (categroy 4)
+								if category.categoryNum == 4
+									div(class="w3-col m3")
+										//-change suggestor to include relationship in parentheses
+										- let suggestor = listing.data.suggestor
+										- if (listing.data.suggestorrelationship) suggestor += ` (${listing.data.suggestorrelationship})`;
+										//-Add http if necessary
+										if listing.data.suggestorlink
+											- if( !listing.data.suggestorlink.includes("http") )
+												- listing.data.suggestorlink = "http://" + listing.data.suggestorlink;
+											a(href=listing.data.suggestorlink class="link")=suggestor
+										else
+											span=listing.data.suggestor
 								//-Owner/creator
-								div(class="w3-col m3")
-									//-Add http if necessary
-									if listing.data.creatorlink
-										- if( !listing.data.creatorlink.includes("http") )
-											- listing.data.creatorlink = "http://" + listing.data.creatorlink;
-										a(href=listing.data.creatorlink class="link")=listing.data.creator
-									else
-										span=listing.data.creator
+								else
+									div(class="w3-col m3")
+										//-Add http if necessary
+										if listing.data.creatorlink
+											- if( !listing.data.creatorlink.includes("http") )
+												- listing.data.creatorlink = "http://" + listing.data.creatorlink;
+											a(href=listing.data.creatorlink class="link")=listing.data.creator
+										else
+											span=listing.data.creator
 								//-Website
 								div(class="w3-col m3")
 									if listing.data.weblink
@@ -137,7 +152,10 @@ block content
 								div(class="w3-col m3")
 									span Server name
 								div(class="w3-col m3")
-									span Owner
+									if category.categoryNum == 4
+										span Suggestor
+									else 
+										span Owner
 								div(class="w3-col m3")
 									span Website
 								div(class="w3-col m3")

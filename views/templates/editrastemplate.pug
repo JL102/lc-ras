@@ -1,5 +1,7 @@
 block content
 	div(class="w3-container")
+		p Categories 1-3:
+	div(class="w3-container")
 		div(class="w3-quarter w3-label theme-inline-padding")
 			label CREATOR 
 		div(class="w3-quarter")
@@ -8,6 +10,26 @@ block content
 			label CREATOR LINK
 		div(class="w3-quarter")
 			input(type="text" name=`${category.categoryNum}_${identifier}_creatorlink` value=listing.data.creatorlink class="w3-input w3-no-border Consolas")
+	div(class="w3-container")
+		p Category 4:
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label SUGGESTOR
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_suggestor` value=listing.data.suggestor class="w3-input w3-no-border Consolas")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label SUGGESTOR LINK
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_suggestorlink` value=listing.data.suggestorlink class="w3-input w3-no-border Consolas")
+	div(class="w3-container")
+		div(class="w3-quarter w3-label theme-inline-padding")
+			label SUGGESTOR RELATIONSHIP
+		div(class="w3-quarter")
+			input(type="text" name=`${category.categoryNum}_${identifier}_suggestorrelationship` value=listing.data.suggestorrelationship class="w3-input w3-no-border Consolas")
+	
+	div(class="w3-container")
+		p Server Info
+	
 	div(class="w3-container")
 		div(class="w3-quarter w3-label theme-inline-padding")
 			label DISCORD LINK 
