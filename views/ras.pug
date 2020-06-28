@@ -1,5 +1,32 @@
 extends layout
 block content
+	mixin icon(listing)
+		- var iconSrc = listing.data.icon || "/images/no-icon.png";
+		div(class="server-icon")
+			img(src=iconSrc)
+			div(class="discord w3-tooltip")
+				if listing.data.discord
+					img(src="/images/discord.png")
+					- var txtSize = 12;
+					- var tooltipLength = listing.data.discord.length * txtSize * 0.7;
+					- var tooltipMargin = tooltipLength / 2;
+					span(class="w3-tooltiptext Consolas" id=`tooltiptext_${listing._id}`  style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`)=listing.data.discord
+					script.
+						var id = "#tooltiptext_#{listing._id}";
+						//Replace contents of tooltiptext with another child span
+						$(id).html((i, html) => `<span>${html}</span>`);
+						//Replace width and margin with accurate width of text
+						$(id).css("width", $(id).children().width() + 12);
+						$(id).css("margin-left", $(id).children().width() / -2 - 6);
+					- if( !listing.data.discord.includes("http") )
+						- listing.data.discord = "http://" + listing.data.discord;
+					a(href=listing.data.discord target="_blank")
+						div
+				else
+					- var txtSize = 12;
+					- var tooltipLength = 128;
+					- var tooltipMargin = tooltipLength / 2;
+					span(class="w3-tooltiptext Consolas" style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`) There is no Discord server for this Minecraft server.
 	- var iconWidth = 64;
 	style.
 		.ras-block{
@@ -72,48 +99,25 @@ block content
 						//-Spacer
 						p(class="w3-col")
 						//-This entire div is for the icon
-						div(class="w3-col m2")
+						div(class="w3-col s0 m2")
 							//-spacer
 							div(class="w3-col m4") &nbsp;
 							//-remainder after spacer
 							div(class="w3-col m8")
-								if listing.data.icon
-									div(class="server-icon")
-										img(src=listing.data.icon)
-										div(class="discord w3-tooltip")
-											if listing.data.discord
-												img(src="/images/discord.png")
-												- var txtSize = 12;
-												- var tooltipLength = listing.data.discord.length * txtSize * 0.7;
-												- var tooltipMargin = tooltipLength / 2;
-												span(class="w3-tooltiptext Consolas" id=`tooltiptext_${listing._id}`  style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`)=listing.data.discord
-												script.
-													var id = "#tooltiptext_#{listing._id}";
-													//Replace contents of tooltiptext with another child span
-													$(id).html((i, html) => `<span>${html}</span>`);
-													//Replace width and margin with accurate width of text
-													$(id).css("width", $(id).children().width() + 12);
-													$(id).css("margin-left", $(id).children().width() / -2 - 6);
-												- if( !listing.data.discord.includes("http") )
-													- listing.data.discord = "http://" + listing.data.discord;
-												a(href=listing.data.discord target="_blank")
-													div
-											else
-												- var txtSize = 12;
-												- var tooltipLength = 128;
-												- var tooltipMargin = tooltipLength / 2;
-												span(class="w3-tooltiptext Consolas" style=`font-size: ${txtSize}px; width: ${tooltipLength}px; margin-left: -${tooltipMargin}px`) There is no Discord server for this Minecraft server.
-								else
-									div(class="server-icon")
-										img(src="/images/no-icon.png")
+								+icon(listing)
 						//-Container for rest of server information except for description
 						div(class="w3-col m10")
 							//-Container for DATA of server info
 							div(class="w3-col")
 								//-Server name
 								div(class="w3-col m3")
-									span
+									div(class="w3-show-small w3-left")
+										div(style="position: relative; left: 32px; top: -8px; width: 1px; height: 1px;")
+											+icon(listing)
+									div
 										strong=listing.data.servername
+									span &nbsp;
+									p(class="w3-col m0 Milford allcaps") Server name
 								//-Suggestor (categroy 4)
 								if category.categoryNum == 4
 									div(class="w3-col m3")
@@ -127,6 +131,8 @@ block content
 											a(href=listing.data.suggestorlink class="link")=suggestor
 										else
 											span=listing.data.suggestor
+										span &nbsp;
+										p(class="w3-col m0 Milford allcaps") Suggestor
 								//-Owner/creator
 								else
 									div(class="w3-col m3")
@@ -137,18 +143,24 @@ block content
 											a(href=listing.data.creatorlink class="link")=listing.data.creator
 										else
 											span=listing.data.creator
+										span &nbsp;
+										p(class="w3-col m0 Milford allcaps") Owner
 								//-Website
-								div(class="w3-col m3")
+								div(class="w3-col m3" style="word-wrap: break-word;")
 									if listing.data.weblink
 										- if( !listing.data.weblink.includes("http") )
 											- listing.data.weblink = "http://" + listing.data.weblink;
 										//-text is only what's after http://
 										a(href=listing.data.weblink class="link")=listing.data.weblink.split("://")[1]
+									span &nbsp;
+									p(class="w3-col m0 Milford allcaps") Website
 								//-MC server address
 								div(class="w3-col m3")
 									span(class="Consolas")=listing.data.address
+									span &nbsp;
+									p(class="w3-col m0 Milford allcaps") IP Address
 							//-Container for LABELS
-							div(class="w3-col Milford allcaps")
+							div(class="w3-col s0 Milford allcaps")
 								div(class="w3-col m3")
 									span Server name
 								div(class="w3-col m3")
@@ -163,9 +175,18 @@ block content
 						//-Full-width container for description
 						div(class="w3-col")
 							//-Spacer
-							div(class="w3-col m1") &nbsp;
+							div(class="w3-col s1") &nbsp;
 							//-Description
-							div(class="w3-col m11")
+							div(class="w3-col s11")
 								p(class="w3-left w3-left-align w3-margin-right")=listing.data.desc
 	//-Spacer at the end of the page
 	p(class="w3-col")
+	script.
+		var hasSeenMessage = localStorage.getItem("hasSeenMessage");
+		if (hasSeenMessage != "true") {
+			var warning = "*WARNING: Only join servers run by people you trust!*"
+				+ "\nJoining a MC server exposes your IP address (and thus your location) to that server's owner."
+				+ "\nWe trust all _Category One_ servers, but will not vouch for the safety of servers from other categories. Join at your own risk!";
+			var card = new NotificationCard(warning, {exitable: true, ttl: 0, type: "warn", onexit: () => {localStorage.setItem("hasSeenMessage", "true")}});
+			card.show();
+		}
