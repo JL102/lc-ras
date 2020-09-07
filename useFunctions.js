@@ -83,7 +83,10 @@ functions.logger = function(req, res, next){
 		+ " to "
 		+ (req.url).cyan
 		+ " at "
-		+ formattedReqTime);
+		+ formattedReqTime
+		+ " ("
+		+ (req.hostname).cyan
+		+ ")");
 	
 	next();
 	}

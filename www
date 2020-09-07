@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('./app');
+var app = require('./ras');
 var debug = require('debug')('experiments:server');
 var http = require('http');
 
@@ -21,7 +21,7 @@ for(var i = 0; i < process.argv.length; i++){
   } 
 }
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
