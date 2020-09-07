@@ -131,7 +131,7 @@ maps.use(useFunctions.logger);
 maps.use('/ras', ras);
 
 //Serve static files for Maps
-const MAPS_LOCATION = '../MapSites';
+const MAPS_LOCATION = '../MapSites/OldMaps';
 const MapsPath = path.resolve(__dirname, MAPS_LOCATION);
 console.log(`MapsPath: ${MapsPath}`);;
 
