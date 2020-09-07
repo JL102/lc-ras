@@ -164,6 +164,7 @@ vhost.use(vhostFunc('localhost', ras));
 vhost.use(vhostFunc('maps.localhost', maps));
 
 vhost.use(vhostFunc('ras.mc-smp.com', ras));
+vhost.use(vhostFunc('test.mc-smp.com', ras));
 vhost.use(vhostFunc('maps.mc-smp.com', maps));
 
 console.log("ras.js:".red + " " +"Ready!".bgGreen)
