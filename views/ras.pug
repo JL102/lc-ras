@@ -155,9 +155,10 @@ block content
 									span &nbsp;
 									p(class="w3-col m0 Milford allcaps") Website
 								//-MC server address
+								- var thisLabel;
 								- var thisColor;
 								case listing.data.status
-									when "released"
+									when "release"
 										- thisLabel = ''
 										- thisColor = '#B8FFBF'
 									when "alpha"
@@ -199,6 +200,7 @@ block content
 								p(class="w3-left w3-left-align w3-margin-right")=listing.data.desc
 	//-Spacer at the end of the page
 	p(class="w3-col")
+		div(class="w3-col ras-block w3-padding") hello
 	script.
 		var hasSeenMessage = localStorage.getItem("hasSeenMessage");
 		if (hasSeenMessage != "true") {
