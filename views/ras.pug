@@ -140,7 +140,7 @@ block content
 										if listing.data.creatorlink
 											- if( !listing.data.creatorlink.includes("http") )
 												- listing.data.creatorlink = "http://" + listing.data.creatorlink;
-											a(href=listing.data.creatorlink class="link" target="_blank")=prettifyURL(listing.data.creator)
+											a(href=listing.data.creatorlink class="link" target="_blank")=listing.data.creator
 										else
 											span=listing.data.creator
 										span &nbsp;
