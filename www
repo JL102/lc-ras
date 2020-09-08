@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('./ras');
-var debug = require('debug')('experiments:server');
+var app = require('./app');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -21,22 +22,33 @@ for(var i = 0; i < process.argv.length; i++){
   } 
 }
 
-var port = normalizePort(process.env.PORT || '80');
-app.set('port', port);
+var httpPort = normalizePort(process.env.PORT || '80');
 
-/**
- * Create HTTP server.
- */
+//var port = normalizePort(process.env.PORT || '80');
+//app.set('port', port);
 
-var server = http.createServer(app);
+if(fs.existsSync("/etc/letsencrypt/live/maps.mc-smp.com/fullchain.pem")
+  && fs.existsSync("/etc/letsencrypt/live/maps.mc-smp.com/privkey.pem")){
+     
+  const credentials = {
+    cert: fs.readFileSync("/etc/letsencrypt/live/maps.mc-smp.com/fullchain.pem"),
+    key: fs.readFileSync("/etc/letsencrypt/live/maps.mc-smp.com/privkey.pem")
+  }
+  var httpsServer = https.createServer(credentials, app);
+  httpsServer.listen(443);
+}
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+var redirect = require('express')();
+redirect.use('/', require('express').Router().get('/',function(req, res){
+  //res.redirect('https://' + req.headers.host + req.url);
+  res.sendStatus(200);
+}));
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+var httpServer = http.createServer(app);
+httpServer.listen(httpPort);
+
+//server.on('error', onError);
+//server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -95,5 +107,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
+  debug('Listening on ' + bind);
 }
