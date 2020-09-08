@@ -213,7 +213,7 @@ block content
 			card.show();
 		}
 	- function prettifyURL(url) {
-	-	if (!url) return 'N/A';
+	-	if (!url || url == '') return 'N/A';
 	-	var finalURL;
 	-	if (url.includes('archive.org')) {
 	-		let split = url.split('/');
