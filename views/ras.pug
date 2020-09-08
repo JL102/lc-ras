@@ -75,7 +75,7 @@ block content
 		}
 	h2(class="Milford allcaps") LOCKEDCRAFT: RELATED ALTERNATIVE SERVERS
 	each category in listingsByCategory
-		- console.log(category.categoryNum)
+		//- console.log(category.categoryNum)
 		div(id=`ListingCategory_${category.categoryNum}`)
 			hr(class="w3-col")
 			h3(class="Milford allcaps") Category #{category.category}: #{category.title}
@@ -155,8 +155,26 @@ block content
 									span &nbsp;
 									p(class="w3-col m0 Milford allcaps") Website
 								//-MC server address
+								- var thisColor;
+								case listing.data.status
+									when "released"
+										- thisLabel = ''
+										- thisColor = '#B8FFBF'
+									when "alpha"
+										- thisLabel = '(ALPHA)'
+										- thisColor = '#B8F7FF'
+									when "beta"
+										- thisLabel = '(BETA)'
+										- thisColor = '#B8F7FF'
+									when "shutdown"
+										- thisLabel = '(SHUT DOWN)'
+										- thisColor = '#DE5D5D'
+									when "cancelled"
+										- thisLabel = '(CANCELLED)'
+										- thisColor = '#DE5D5D'
 								div(class="w3-col m3")
-									span(class="Consolas")=listing.data.address
+									span(class="Consolas" style=`color: ${thisColor}`) #{listing.data.address}&nbsp;
+									span(class="Consolas" style=`color: ${thisColor}`) #{thisLabel}
 									span &nbsp;
 									p(class="w3-col m0 Milford allcaps") IP Address
 							//-Container for LABELS
