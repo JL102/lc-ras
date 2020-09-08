@@ -202,7 +202,7 @@ block content
 	p(class="w3-col")
 		div(class="w3-col ras-block w3-padding w3-left-align") 
 			p(class="w3-medium") Made with &lt;3 by 
-				a(href="https://drakinite.net" target="_blank") Drakinite
+				span Drakinite
 	script.
 		var hasSeenMessage = localStorage.getItem("hasSeenMessage");
 		if (hasSeenMessage != "true") {
@@ -213,8 +213,7 @@ block content
 			card.show();
 		}
 	- function prettifyURL(url) {
-	-	console.log(url)
-	-	if (typeof url != 'string') url = ''
+	-	if (!url) url = ''; url += ''
 	-	var finalURL;
 	-	if (url.includes('archive.org')) {
 	-		let split = url.split('/');
