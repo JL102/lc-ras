@@ -128,7 +128,7 @@ block content
 										if listing.data.suggestorlink
 											- if( !listing.data.suggestorlink.includes("http") )
 												- listing.data.suggestorlink = "http://" + listing.data.suggestorlink;
-											a(href=listing.data.suggestorlink class="link")=suggestor
+											a(href=listing.data.suggestorlink class="link" target="_blank")=suggestor
 										else
 											span=listing.data.suggestor
 										span &nbsp;
@@ -140,7 +140,7 @@ block content
 										if listing.data.creatorlink
 											- if( !listing.data.creatorlink.includes("http") )
 												- listing.data.creatorlink = "http://" + listing.data.creatorlink;
-											a(href=listing.data.creatorlink class="link")=listing.data.creator
+											a(href=listing.data.creatorlink class="link" target="_blank")=prettifyURL(listing.data.creator)
 										else
 											span=listing.data.creator
 										span &nbsp;
@@ -151,7 +151,7 @@ block content
 										- if( !listing.data.weblink.includes("http") )
 											- listing.data.weblink = "http://" + listing.data.weblink;
 										//-text is only what's after http://
-										a(href=listing.data.weblink class="link")=listing.data.weblink.split("://")[1]
+										a(href=listing.data.weblink class="link" target="_blank")=prettifyURL(listing.data.weblink)
 									span &nbsp;
 									p(class="w3-col m0 Milford allcaps") Website
 								//-MC server address
@@ -200,7 +200,9 @@ block content
 								p(class="w3-left w3-left-align w3-margin-right")=listing.data.desc
 	//-Spacer at the end of the page
 	p(class="w3-col")
-		div(class="w3-col ras-block w3-padding") hello
+		div(class="w3-col ras-block w3-padding w3-left-align") 
+			p(class="w3-medium") Made with &lt;3 by 
+				a(href="https://drakinite.net" target="_blank") Drakinite
 	script.
 		var hasSeenMessage = localStorage.getItem("hasSeenMessage");
 		if (hasSeenMessage != "true") {
@@ -210,3 +212,20 @@ block content
 			var card = new NotificationCard(warning, {exitable: true, ttl: 0, type: "warn", onexit: () => {localStorage.setItem("hasSeenMessage", "true")}});
 			card.show();
 		}
+	- function prettifyURL(url) {
+	-	console.log(url)
+	-	if (typeof url != 'string') url = ''
+	-	var finalURL;
+	-	if (url.includes('archive.org')) {
+	-		let split = url.split('/');
+	-		let remainder = split.splice(7);
+	-		finalURL = remainder[0];
+	-	}
+	-	else if (url.includes('lockedcraftlegacy')) {
+	-		finalURL = 'LockedCraft Archive Portal';
+	-	}
+	-	else {
+	-		finalURL = url.split('/').splice(2,1).join('/');
+	-	}
+	-	return finalURL;
+	- }
