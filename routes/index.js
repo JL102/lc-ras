@@ -25,6 +25,8 @@ router.get('/', async function(req, res){
 	
 	res.render('ras', {
 		title: "LockedCraft Related Alternative Servers",
+		description:  "A listing of servers related to, similar to, suggested by the players of, and/or derivative of, the now-defunct LockedCraft server.",
+		previewImg: "https://i.imgur.com/mB17FW9.png",
 		listingsByCategory: listingsByCategory
 	})
 });
