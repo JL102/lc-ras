@@ -1,0 +1,19 @@
+extends layout
+block content
+	style.
+		a{
+			text-decoration: none;
+		}
+		.w3-card{
+			transition: 0.5s;
+		}
+	h2(class="Milford allcaps") LOCKEDCRAFT MAPS: LANDING PAGE
+	div(class="w3-section w3-padding-16")
+		a(href="/players")
+			div(class="w3-card w3-gray w3-hover-white w3-padding-32 w3-xxlarge Milford") Player Maps
+	div(class="w3-section w3-padding-16")
+		a(href="/staff")
+			div(class="w3-card w3-gray w3-hover-white w3-padding-32 w3-xxlarge Milford") Staff Maps
+	div(class="w3-section w3-padding-16")
+		a(href="/other")
+			div(class="w3-card w3-gray w3-hover-white w3-padding-32 w3-xxlarge Milford") Other Maps

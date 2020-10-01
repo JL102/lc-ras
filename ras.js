@@ -123,9 +123,9 @@ maps.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 maps.use(useragent.express());
 
 //View variables
-maps.use(useFunctions.userViewVars);
+//maps.use(useFunctions.userViewVars);
 //Logging and timestamping
-maps.use(useFunctions.logger);
+//maps.use(useFunctions.logger);
 
 //Use RAS under /ras subdomain
 maps.use('/ras', ras);
@@ -135,6 +135,8 @@ const MAPS_LOCATION = '../MapSites/OldMaps';
 const MapsPath = path.resolve(__dirname, MAPS_LOCATION);
 console.log(`MapsPath: ${MapsPath}`);;
 
+
+maps.use(express.static(path.join(__dirname, 'public')));
 maps.use('/players', express.static(path.join(MapsPath, 'PlayerPortals')))
 maps.use('/staff', express.static(path.join(MapsPath, 'StaffPortals')))
 maps.use('/other', express.static(path.join(MapsPath, 'MiscTransport')))
@@ -145,7 +147,10 @@ maps.use('/', (req, res, next) => {
 		req.url = '/';
 	}
 	else {
-		res.sendFile(path.join(MapsPath, 'index.html'));
+		res.render('./mapslanding', {
+			title: 'Maps'
+		});
+		//res.sendFile(path.join(MapsPath, 'index.html'));
 	}
 });
 
