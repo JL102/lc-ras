@@ -1,6 +1,10 @@
 div(style="font-size:1.1em;" class="Milford")
 	nav(class="w3-bar w3-container gear-text-white w3-rest" style="position:relative;z-index:2;")
 		a(href="/" class="w3-bar-item w3-button theme-clear w3-mobile Milford") HOME
+		if rasURL
+			a(href=rasURL class="w3-bar-item w3-button theme-clear w3-mobile Milford") RELATED ALTERNATIVE SERVERS
+		if mapsURL
+			a(href=mapsURL class="w3-bar-item w3-button theme-clear w3-mobile Milford") MAPS
 		if user 
 			a(href="/user/logout" class="w3-bar-item w3-button theme-clear w3-mobile") LOG OUT
 			if user.role == "admin"

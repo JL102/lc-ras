@@ -36,6 +36,7 @@ if(fs.existsSync("/etc/letsencrypt/live/maps.mc-smp.com/fullchain.pem")
   }
   var httpsServer = https.createServer(credentials, app);
   httpsServer.listen(443);
+  process.env.HTTPS_ENABLED = 'true';
 }
 
 var redirect = require('express')();

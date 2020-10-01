@@ -171,6 +171,8 @@ lockedcraft.use('/', (req, res, next) => {
 //VHOST EXPRESS FUNC
 const vhost = express();
 
+vhost.use(requireHTTPS);
+
 vhost.use(vhostFunc('ras.localhost', ras));
 vhost.use(vhostFunc('localhost', ras));
 vhost.use(vhostFunc('maps.localhost', maps));
@@ -185,3 +187,12 @@ vhost.use(vhostFunc('lockedcraft.com', lockedcraft));
 console.log("ras.js:".red + " " +"Ready!".bgGreen)
 
 module.exports = vhost;
+
+function requireHTTPS(req, res, next) {
+	// The 'x-forwarded-proto' check is for Heroku
+	if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development" && process.env.HTTPS_ENABLED == 'true') {
+		console.log('requireHTTPS: Redirecting user to HTTPS');
+		return res.redirect('https://' + req.get('host') + req.url);
+	}
+	next();
+}
