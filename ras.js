@@ -161,16 +161,26 @@ maps.use((err, req, res, next) => {
 	res.sendStatus(err.status || 500);
 });
 
+//LOCKEDCRAFT LANDING PAGE
+const lockedcraft = express();
+lockedcraft.use(express.static(path.join(__dirname, 'public')));
+lockedcraft.use('/', (req, res, next) => {
+	res.sendFile(path.join(__dirname, 'views/lockedcraft.com.html'));
+})
+
 //VHOST EXPRESS FUNC
 const vhost = express();
 
 vhost.use(vhostFunc('ras.localhost', ras));
 vhost.use(vhostFunc('localhost', ras));
 vhost.use(vhostFunc('maps.localhost', maps));
+vhost.use(vhostFunc('lockedcraft.localhost', lockedcraft));
 
 vhost.use(vhostFunc('ras.mc-smp.com', ras));
 vhost.use(vhostFunc('test.mc-smp.com', ras));
 vhost.use(vhostFunc('maps.mc-smp.com', maps));
+vhost.use(vhostFunc('lockedcraft.mc-smp.com', lockedcraft));
+vhost.use(vhostFunc('lockedcraft.com', lockedcraft));
 
 console.log("ras.js:".red + " " +"Ready!".bgGreen)
 

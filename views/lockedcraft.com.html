@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LockedCraft Network</title>
+<meta name="description" content="A defunct MC network (2010-2016); maintained by the LCLO.">
+<meta name="keywords" content="LC, LCLO, MineCraft, Reunion, MineCraft Server, SMP, Towny, KitPVP, CraftGround, CraftGrounds, ChosenCraft, Graf33, maddogtherobot, madogtherobot, LockedCraft, LockedCraft Legacy, LockedCraft Legacy Org, LockedCraft Legacy Organization">
+<meta name="author" content="LC & LCLO">
+<meta data-rh="true" property="twitter:image" content="https://lockedcraft.com/images/logo.png">
+<meta name="theme-color" content="#333">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+	/* Main Styling */
+	html {
+		margin: 0;
+		padding: 0;
+		font-family: Arial, Helvetica, "sans-serif";
+		/*background-color: black;*/
+		scrollbar-color: #111212 #1E1E1E;
+	}
+	body {
+		background-image: url("images/background.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		margin: 0px;
+		height: 2850px;
+		padding: 0;
+	}
+	/* Top navigation bar */
+	.topnav {
+		width:100%;
+		background-image: linear-gradient(#1E1E1E, #181818, #212121);
+		overflow: auto;
+		padding: 3px 1px 6px 1px;
+		border: solid #323232;
+		border-width: 0px 0px 2px 0px;
+	}
+	.topnav a {
+		padding: 3px 25px 6px 25px;
+		color: white;
+		text-decoration: none;
+		font-size: 25px;
+	}
+	.topnav a:hover {
+		background-color: hsla(242,100%,15%,0.30);
+	}
+	/* Attempt to manage mobile devices. */
+	@media screen and (max-width: 1467px) {
+		.topnav a {
+    		float: none;
+    		display: block;
+  		}
+	}
+	@media screen and (max-width: 1300px) {
+		.ContentWrapper {
+			width: 100% !important;
+		}
+		.moduleone {
+		width:100% !important;
+		margin: 0px 0px 0px 0px !important;
+		height: 320px!important;
+		}
+		.moduletwo {
+		width:100% !important;
+		margin: 0px 0px 0px 0px !important;
+		top: 350px!important;	
+		}
+		body {
+			width: 100% !important;
+			height: auto !important;
+		}
+		.content {
+			margin: 0px 1px 0px 1px !important;
+		}
+		.content p {
+			margin-left: 10px !important;
+			margin-right: 10px !important;
+		}
+		.mobilehide {
+			display: none;
+		}
+		.bottomnav {
+			display: none;
+		}
+	}
+	@media screen and (max-width: 1150px) {
+		.mainheader {
+    		display: none;
+  		}
+	}
+	/* Top Logo */
+	.mainheader {
+		padding: 25px 0px 20px 0px;
+	}
+	/*Body Area*/
+	.ContentWrapper {
+		width: 1350px;
+		display: flex;
+		position: relative;
+	}
+	.moduleone {
+		width:1250px;
+		margin: 25px 50px 25px 50px;
+		background-color: hsla(0,0%,11%,0.80);
+		color: #E6E6E6;
+		border: solid #323232;
+		border-radius: 10px;
+		border-width: 2px 2px 2px 2px;
+		position: absolute;
+		top: 0px;
+		z-index: 1
+	}
+	.moduletwo {
+		width:1250px;
+		margin: 25px 50px 25px 50px;
+		background-color: hsla(0,0%,11%,0.80);
+		color: #E6E6E6;
+		border: solid #323232;
+		border-radius: 10px;
+		border-width: 2px 2px 2px 2px;
+		position: absolute;
+		top: 275px;
+		z-index: 2;
+		left: 0px;
+	}
+	.subheader {
+		width: 100%;
+		background-image: linear-gradient(hsla(200,5%,5%,0.2), hsla(200,5%,5%,0.5), hsla(200,5%,5%,0.8));
+		overflow: auto;
+		border: solid black;
+		border-width: 0px 0px 2px 0px;
+		padding-top: 5px;
+		text-align: left;
+		font-weight: bold;
+		font-size: 18px;
+		position: relative;
+		height: 20px;
+		overflow-y: visible;
+	}
+	.subheader .Header {
+		margin: 3px 0px 5px 8px;
+		position: absolute;
+		z-index: 3;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+	}
+	.subheader .Logo {
+		position:absolute;
+		z-index: 4;
+		top: 0px;
+		left: 0px;
+		text-align: right !important;
+		right: 0px;
+		bottom: 0px;
+		margin: 0px 8px 5px 0px;
+		font-size: 25px;
+		font-weight: 715;
+		font-family: "source-code-pro", sans-serif;
+		font-kerning: 0px;
+	}
+	.subheader .Logo .LetterOne {
+		color: #02B2F0;
+	}
+	.subheader .Logo .LetterTwo {
+		color: #E8E8E8;
+	}
+	.content {
+		margin: 25px 5px 45px 5px;
+	}
+	.content .title {
+		font-size: 35px;
+	}
+	.content .text {
+		font-size: 18px;
+	}
+	.content p {
+		margin-top: 0.4em;
+		margin-bottom: 0.4em;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+	.content .longtext {
+		margin: 15px 0px 0px 0px;
+	}
+	.content .longtext p {
+		margin-top: 3em;
+		margin-left: 6em;
+		margin-right: 6em;
+	}
+	/* Bottom navigation bar */
+	.bottomnav {
+		width:100%;
+		background-image: linear-gradient(black, #0f0f0f, #171719, #0b0b0c, #0b0b0c, black, #0b0b0c);
+		overflow: auto;
+		position: absolute;
+		top: 2810px;
+		padding: 3px 1px 6px 1px;
+		border: solid black;
+		border-width: 2px 0px 0px 0px;
+	}
+	.bottomnav .textarea {
+		padding: 3px 25px 6px 25px;
+		color: white;
+		text-decoration: none;
+		font-size: 12px;
+		text-align: center;
+	}
+</style>
+<script>
+</script>
+</head>
+<body>
+	<!-- Navigation Bar-->
+	<div class="topnav">
+		<center>
+			<a href="https://mc-smp.com/"><i class="fa fa-fw fa-home"></i> LCLO (Main Site)</a>
+			<a href="https://mc-smp.com/dis"><i class="fa fa-fw fa-comments"></i> Community (Discord)</a>
+			<a href="https://www.youtube.com/channel/UCM9neZYrNDi9lBxMfGdogkQ"><i class="fa fa-fw fa-youtube"></i> YouTube</a>
+			<a href="https://ras.mc-smp.com"><i class="fa fa-fw fa-server"></i> RAS List</a>
+			<a href="https://mc-smp.com/?page_id=282"><i class="fa fa-fw fa-archive"></i> Archives</a>
+			<a href="https://lockedcraftlegacy.enjin.com/forum/m/23232572/viewthread/26503355-final-staff-messages/post/first"><i class="fa fa-fw fa-bookmark"></i> Final Messages</a>
+		</center>
+	</div>
+	<!-- Header Logo-->
+	<center>
+	<img class="mainheader" src="images/mainheader.png" alt="LockedCraft Header"/>
+	</center>
+	<!-- Main Content-->
+	<center>
+		<div class="ContentWrapper">
+			<!--Top Message-->
+			<div class="moduleone">
+				<div class="subheader">
+					<span class="Header">Network Closure & Next Steps</span>
+					<span class="Logo">
+						<span class="LetterOne">L</span><span class="LetterTwo">C</span>
+					</span>
+				</div>
+				<div class="content">
+					<span class="title">Effective March 16, 2016, the LockedCraft Network has shut down.</span><br><br>
+					<p class="text">All further operations -- including archives and an upcoming temporary reunion event -- will be carried out by the LockedCraft Legacy Organization!</p>
+					<p class="text">To reconnect with the server's original community, and to stay up to date with the LCLO's reunion event, please join our Official Discord.</p>
+				</div>
+			</div>
+			<!--Bottom Message-->
+			<div class="moduletwo">
+				<div class="subheader">
+					<span class="Header">Final Message</span>
+					<span class="Logo">
+						<span class="LetterOne">L</span><span class="LetterTwo">C</span>
+					</span>
+				</div>
+				<div class="content">
+					<image class="mobilehide" src="images/concludingbanner.png" alt="Final Banner"></image>
+					<div class="longtext">
+						<p class="text">
+							Greetings, fellow players from LC. This post is a few days overdue, I just really wanted to avoid the inevitable for as long as possible. The LockedCraft that you and I know, is no more. We, the staff team, have finally decided to resign as a whole, as the work we would need to put into LockedCraft to get it *maybe* back on its feet is more than we’re willing to put in. This was a unanimous decision, one that each of our staff members were asked to answer and we all agree’d it’s time to let LC rest
+						</p>
+						<p class="text">
+							Don’t get me wrong, it’s been a fun run and I wouldn’t change it for the world, to a lot of us LockedCraft was more like a second family than just a MineCraft server and we’ve created bonds and memories that we’ll remember and cherish forever. There have been some rough patches, yeah, but we’ve come out on top every single time, except this one.
+						</p>
+						<p class="text">
+							So I’ll answer the big question that is well.. really the only legitimate question to ask at this point, Why? Well, fellow LockedCraftians, for starters if you didn’t know this already, we’re all volunteers here, with the exception of a few builders Graf paid and Graf himself, none of us have (through non-abusing ways) made any money off of LC, ever. Which is why it’s surprising we dealt with all the stuff we did, but we did it because that’s what a community does for each other. We tried to keep chat civil and free of curse words, we would always be looking out to find hackers so you guys would have the best experience you could, and a lot of the times we took a lot of flak for the work that we did. Hell, I had my internet attacked just because I was an admin and some kid thought it would make me give him OP (It didn’t work). The work we’d be putting in at this point to restore just the server alone to it’s rightful position, not even the playerbase is just too great at this point, so that’s half the reason we’re resigning LockedCraft.
+						</p>
+						<p class="text">
+							The other half of the reason we’ve decided to resign, is our lovely owner Graf33. I’m going to do my best here not to bag on Graf, because I respect him as a human being, the few times we did talk and discuss things he was a really cool guy, that however doesn’t mean he is a great owner. Graf may be the only person who actively made money off of LC, those ranks you purchased or your friend got or those unbans you dropped $35 all went to Graf, and for a good while he was pretty responsible and reliable with helping us with LC. But his inactivity started to drop a long time ago, and we haven’t been able to contact him in months. Life happens, and I get that, we all do but there comes a time when something you’ve invested time and money into needs your attention, and if you can’t give it the attention it needs, you need to pass down the torch and let someone else take over. We weren’t even able to get ahold of him to discuss that. We even had player paying for the website because Graf didn’t have it purchased for this long, even at this point I believe there are only days remaining.
+						</p>
+						<p class="text">
+							As your current Head Admin until I hit create post, I would like to personally thank each and every one of you, whether you just logged on our website once, saw our Twitter, purchased a rank on the server, or invested some of your time with LockedCraft, thank you. You are the reason we were able to keep LockedCraft going for so long. You were our motivation and you pushed us to continue making LockedCraft a better server for you. To any past staff or admins or anyone that even applied for staff, thank you for your help in creating a better environment for LockedCraft, even if you didn’t contribute much, the fact that you tried or considered becoming staff to help, knowing there weren’t any big rewards for doing so means a lot to me and hundreds of others I’m sure, even if they aren’t around here any longer. Thank you to our current admins for trying so long on a server that’s long since been dying, thank you Lynn for sticking around even when you tried to leave us oh so long ago, thank you Kage for the work you put in before us in keeping LockedCraft a great place to be, and most importantly thank you Leah-san. For without Leah, LockedCraft would have died a long time ago. Leah has put in the most work even as a retired Head-Admin out of any of us, probably put together. I honestly don’t know where LockedCraft would have gone without your devotion and hard work, and it’s been an honour serving with you.
+						</p>
+						<p class="text">
+							Anyway to conclude this long.. goodbye, essentially, our LockedCraft is gone, and we along with it. Graf does have the rights and everything to the server so should he come back, by all means he is welcome to bring it back from the dead, but we your current staff team, we are finished. Thanks again to everyone for making LC what it was.
+						</p>
+						<p class="text">With regards for the last time, Your former head-admin Alcapwned and the rest of the admin and staff teams.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+	<div class="bottomnav">
+		<div class="textarea">
+			<span>©2013 LockedCraft Network & © 2020 The LockedCraft Legacy Organization.</span><br>
+			<span>Page created by the LockedCraft Network; hosting and maintenance provided by the LockedCraft Legacy Organization</span>
+			<!--Page hand-written in HTML by the LCLO on 2020-09-09-->
+		</div>
+	</div>
+</body>
+</html>
+
+	
